@@ -1,5 +1,7 @@
 # カスタム GitHub Copilot ワークショップ（ASP.NET Core & PostgreSQL スタック）
 
+This project is based on [https://github.com/ps-copilot-sandbox/copilot-custom-workshop-django-react-web]
+
 **GitHub エキスパートサービスチーム**がご用意したカスタム Copilot ワークショップへようこそ！ 
 
 このワークショップでは、フロントエンドに ASP.NET Core MVC、バックエンドに ASP.NET Core、データベースに PostgreSQL を利用したフルスタック Web アプリケーションの構築方法を学びます。
