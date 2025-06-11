@@ -1,5 +1,5 @@
 <!-- filepath: docs_dotnet/4_StoringPostgreSQLImageRegistry/README_JA.md -->
-# PostgreSQLパッケージをGitHub Packagesにデプロイしよう
+# (オプション)PostgreSQLパッケージをGitHub Packagesにデプロイしよう
 
 [前へ - PostgreSQLデータベースレイヤーを構築しよう](../3_BuildPostgreSQL/README_VS2022_JA.md) | [次へ - .NET MVCアプリケーション（DTOパターン）をPostgreSQLとともに構築しよう](../5_BuildDotNetMVC/README_JA.md)
 

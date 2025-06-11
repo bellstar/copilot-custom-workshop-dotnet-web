@@ -25,7 +25,7 @@
 
 - Copilotライセンスへのアクセス
 - Copilot for Businessライセンス付きのCopilot Chatへのアクセス
-- Visual Studio 2022以降 または .NET 8 SDKとCopilot/Copilot Chatが使えるVisual Studio Code
+- Visual Studio 2022のバージョン17.14.5以降 または .NET 8 SDKとCopilot/Copilot Chatが使えるVisual Studio Code
 - Docker（DockerHubからベースイメージ取得可能なこと）
 - .NET 8 SDKがインストールされていること
 - Windowsの場合はGit CLI、Mac/Linuxの場合はターミナルでgitが使えること
