@@ -1,36 +1,25 @@
-# トラブルシューティングガイド
+# トラブルシューティングガイド（SQLite/EF Core）
 
-## 問題: ポートが使用中でエラーが発生する場合: docker: Error response from daemon: Ports are not available: listen tcp 0.0.0.0:5432: bind: address already in use.
+## 問題: SQLiteファイルがロックされている/アクセスできない
 
-ターミナルを終了し、以下のコマンドを実行してください。
+- アプリケーションが複数起動していないか確認してください。
+- DBファイル（例: cats.db）を削除して再作成する場合は、アプリを完全に停止してから行ってください。
 
-```bash
-sudo lsof -i :5432     
+## 問題: マイグレーションや初期データ投入でエラーが出る
 
-sudo kill -9 <PID>
-```
+- `dotnet ef migrations add InitialCreate` などのコマンドが失敗する場合、パッケージのバージョンやDbContextの設定を見直してください。
+- `Microsoft.EntityFrameworkCore.Sqlite` パッケージが正しくインストールされているか確認してください。
 
-## 問題: Dockerコンテナ名の重複エラーが発生する場合: docker: Error response from daemon: Conflict. The container name "/custom-database-layer" is already in use by container. You have to remove (or rename) that container to be able to reuse that name.
+## 問題: パッケージの不整合やビルドエラー
 
-```bash
-docker ps -a
+- `dotnet restore` で依存関係を再取得してください。
+- プロジェクトのターゲットフレームワークが .NET 8 になっているか確認してください。
 
-docker rm <PS ID>
-```
+## 問題: データが表示されない/保存されない
 
-## 問題: Dockerコンテナが起動しない場合はどうすればよいですか？
+- DBファイルのパスが正しいか、`appsettings.json` の接続文字列を確認してください。
+- 初期データ投入処理が正しく動作しているか、`Program.cs` の該当部分を見直してください。
 
-以下のようにshでイメージを起動してみてください。
+---
 
-```bash
-docker run -it --rm --entrypoint sh コンテナイメージ名:バージョン
-```
-
-例：
-
-
-```bash
-docker run -it --rm --entrypoint sh custom-database-layer:2.0
-```
-
-printenvなどのコマンドでトラブルシュートしてください。
+困ったときはCopilot Chatでエラーメッセージや状況を伝えて相談しましょう。
