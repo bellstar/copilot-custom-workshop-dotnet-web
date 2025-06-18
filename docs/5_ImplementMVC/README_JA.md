@@ -93,20 +93,37 @@ CatsControllerのIndexアクションに対応する一覧表示用ビュー（V
 
 ```html
 @model IEnumerable<MeowWorld.Models.CatDto>
-<h2>Cats List</h2>
+@{
+    ViewData["Title"] = "猫一覧";
+}
+
+<h1>猫一覧</h1>
+<p>
+    <a asp-action="Create" class="btn btn-primary">新規追加</a>
+</p>
 <table class="table">
     <thead>
-        <tr><th>Name</th><th>Age</th><th>Breed</th></tr>
+        <tr>
+            <th>名前</th>
+            <th>年齢</th>
+            <th>品種</th>
+            <th></th>
+        </tr>
     </thead>
     <tbody>
-    @foreach (var cat in Model)
-    {
+@foreach (var item in Model)
+{
         <tr>
-            <td>@cat.Name</td>
-            <td>@cat.Age</td>
-            <td>@cat.Breed</td>
+            <td>@item.Name</td>
+            <td>@item.Age</td>
+            <td>@item.Breed</td>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.Id">詳細</a> |
+                <a asp-action="Edit" asp-route-id="@item.Id">編集</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">削除</a>
+            </td>
         </tr>
-    }
+}
     </tbody>
 </table>
 ```
@@ -134,6 +151,62 @@ app.MapControllerRoute(
 ```
 アプリを起動し、猫リストが表示されることを確認するには？
 ```
+
+---
+
+## Advanced: 各アクション用 .cshtml ファイルの作成
+
+猫情報の新規作成・編集・削除・詳細表示のためのビュー（Create/Edit/Delete/Details）も、Copilot Chatを活用して効率的に作成してみましょう。
+
+### Copilot Chatプロンプト
+
+```
+CatsControllerのCreate/Edit/Details/Deleteアクションに対応する .cshtml ビュー（Views/Cats/）を作成したいです。各アクションに必要なコード例を教えてください。
+```
+
+Copilot Chatの提案を参考に、各 .cshtml ファイル（Create.cshtml, Edit.cshtml, Details.cshtml, Delete.cshtml）を作成しましょう。  
+Visual Studioのスキャフォールディング機能を使って自動生成する方法も便利です。
+
+具体例：Create.cshtml
+
+```html
+@model MeowWorld.Models.CatDto
+@{
+    ViewData["Title"] = "猫の新規作成";
+}
+
+<h1>猫の新規作成</h1>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label asp-for="Name" class="control-label"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Age" class="control-label"></label>
+        <input asp-for="Age" class="form-control" />
+        <span asp-validation-for="Age" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Breed" class="control-label"></label>
+        <input asp-for="Breed" class="form-control" />
+        <span asp-validation-for="Breed" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">作成</button>
+    <a asp-action="Index" class="btn btn-secondary">戻る</a>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+```
+
+> **TIP:**  
+> 生成されたコードは必ず内容を確認し、必要に応じてカスタマイズしましょう。  
+> Copilot Chatに「Edit用のフォームをもっとシンプルにしたい」など追加で質問するのもおすすめです。
 
 ---
 

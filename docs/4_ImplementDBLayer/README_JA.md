@@ -151,17 +151,13 @@ dotnet tool install --global dotnet-ef
 - **Seederクラス方式**: 独立したSeederクラスやサービスで、必要なときだけ明示的に初期化
 - **SQLスクリプト方式**: SQLファイルを用意し、コマンドや管理画面から初期化
 
----
-
-### Copilot Chat推奨プロンプト（リファクタリング例）
+### Copilot Chatプロンプト（Seederクラス方式のリファクタリング）
 
 ```
 ASP.NET Core MVC（.NET 8）＋SQLiteで、アプリ起動時ではなくコマンドや管理画面から明示的に初期データ投入（SeederクラスやSQLスクリプト方式）を実装したいです。学習用と実運用の違いも含めて、推奨されるリファクタリング方法とサンプルコードを教えてください。
 ```
 
----
-
-### 模範的なリファクタリング例（Seederクラス方式）
+具体例： Seederクラス
 
 ```csharp
 // 例: Services/DbSeeder.cs
@@ -183,6 +179,8 @@ public class DbSeeder
 }
 ```
 
+Program.cs
+
 ```csharp
 // Program.cs で必要なときだけ呼び出す
 using (var scope = app.Services.CreateScope())
@@ -192,8 +190,43 @@ using (var scope = app.Services.CreateScope())
 }
 ```
 
+### Copilot Chatプロンプト（SQLスクリプト方式のリファクタリング）
+
+```
+SQLite用の初期データ投入用SQLスクリプト（例：seed.sql）を作成したいです。猫テーブル（Cats）に複数件のサンプルデータをINSERTするSQL文の例を教えてください。
+```
+
+さらに、投入方法についても質問してみましょう。
+
+```
+作成したseed.sqlを使って、cats.dbにデータを投入するにはどうすればよいですか？Windows（PowerShell）とMac/Linux（Bash）の両方の例を教えてください。
+```
+
+具体例：seed.sql
+
+```sql
+INSERT INTO Cats (Name, Age, Breed) VALUES ('Mona', 2, 'Scottish Fold');
+INSERT INTO Cats (Name, Age, Breed) VALUES ('Leo', 3, 'Maine Coon');
+INSERT INTO Cats (Name, Age, Breed) VALUES ('Sakura', 1, 'Munchkin');
+-- 必要に応じてさらに追加
+```
+
+SQLスクリプトの投入方法
+
+```pwsh
+sqlite3 .\cats.db ".read seed.sql"
+```
+
+投入後、アプリを起動してデータが反映されているか確認しましょう。
+
+```pwsh
+sqlite3 .\cats.db "SELECT * FROM Cats;"
+```
+
 ---
 
 このように、用途に応じて初期化方法をリファクタリングできることも実践的なスキルです。
+
+---
 
 [前へ - プロジェクト作成とSQLite導入](../3_CreateProjectAndDB/README_JA.md) | [次へ - MVCコントローラー・ビュー実装](../5_ImplementMVC/README_JA.md)
