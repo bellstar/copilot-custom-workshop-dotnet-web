@@ -162,6 +162,70 @@ Copilot Chatを活用して、
 - Moqが利用できるようにするにはどうしたらよいでしょうか。
 - ASP.NET Coreの単体テストのベストプラクティスも質問してみましょう。
 
+## 参考：Moq を利用した単体テストの質問例と模範コード
+### Moq を使用した単体テストの作成の質問
+Moq の単体テストを作成するように依頼します。
+
+プロンプト例：
+
+```
+Moq を使用して、HomeController.cs の単体テストを作成してください。 
+```
+
+![Copilot Ask MoqUnitTest Steps](./images/3_CopilotAskMoqSteps.png)
+
+### Moq を使用した単体テスト例 (HomeControllerTests.cs)
+```csharp
+using Xunit;
+using Moq;
+using Microsoft.Extensions.Logging;
+using MeowWorld.Controllers;
+using Microsoft.AspNetCore.Mvc;
+using MeowWorld.Models;
+using Microsoft.AspNetCore.Http;
+
+namespace MeowWorld.Tests;
+public class HomeControllerTests
+{
+    [Fact]
+    public void Index_ReturnsView()
+    {
+        var loggerMock = new Mock<ILogger<HomeController>>();
+        var controller = new HomeController(loggerMock.Object);
+
+        var result = controller.Index();
+
+        Assert.IsType<ViewResult>(result);
+    }
+
+    [Fact]
+    public void Privacy_ReturnsView()
+    {
+        var loggerMock = new Mock<ILogger<HomeController>>();
+        var controller = new HomeController(loggerMock.Object);
+
+        var result = controller.Privacy();
+
+        Assert.IsType<ViewResult>(result);
+    }
+
+    [Fact]
+    public void Error_ReturnsViewWithErrorViewModel()
+    {
+        var loggerMock = new Mock<ILogger<HomeController>>();
+        var controller = new HomeController(loggerMock.Object);
+
+        controller.ControllerContext.HttpContext = new DefaultHttpContext(); 
+
+        var result = controller.Error();
+
+        var viewResult = Assert.IsType<ViewResult>(result);
+        var model = Assert.IsType<ErrorViewModel>(viewResult.Model);
+        Assert.False(string.IsNullOrEmpty(model.RequestId));
+    }
+}
+```
+
 ---
 
 [前へ - MVCコントローラー・ビュー実装](../5_ImplementMVC/README_JA.md) | [次へ - 学びと振り返り](../7_LessonsLearned/README_JA.md)
