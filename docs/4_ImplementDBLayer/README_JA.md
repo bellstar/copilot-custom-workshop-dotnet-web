@@ -1,6 +1,6 @@
 # DBレイヤー（DTO/DbContext/初期データ）実装
 
-[前へ - プロジェクト作成とSQLite導入](../3_CreateProjectAndDB/README_JA.md) | [次へ - MVCコントローラー・ビュー実装](../5_ImplementMVC/README_JA.md)
+[前へ - Custom Instructions で Copilot の出力を制御しよう](../3_5_CustomInstructions/README_JA.md) | [次へ - MVCコントローラー・ビュー実装](../5_ImplementMVC/README_JA.md)
 
 ---
 
@@ -231,4 +231,4 @@ sqlite3 .\cats.db "SELECT * FROM Cats;"
 
 ---
 
-[前へ - プロジェクト作成とSQLite導入](../3_CreateProjectAndDB/README_JA.md) | [次へ - MVCコントローラー・ビュー実装](../5_ImplementMVC/README_JA.md)
+[前へ - Custom Instructions で Copilot の出力を制御しよう](../3_5_CustomInstructions/README_JA.md) | [次へ - MVCコントローラー・ビュー実装](../5_ImplementMVC/README_JA.md)

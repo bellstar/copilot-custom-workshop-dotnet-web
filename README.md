@@ -17,6 +17,7 @@ This project is based on [https://github.com/ps-copilot-sandbox/copilot-custom-w
 1. [Monaの夢を叶えるストーリー](docs/1_Story/README_JA.md)
 2. [はじめにお読みください](docs/2_BeforeGettingStarted/README_JA.md)
 3. [プロジェクト作成とSQLite導入](docs/3_CreateProjectAndDB/README_JA.md)
+3.5. [Custom Instructions で Copilot の出力を制御しよう（オプション）](docs/3_5_CustomInstructions/README_JA.md)
 4. [DBレイヤー（DTO/DbContext/初期データ）実装](docs/4_ImplementDBLayer/README_JA.md)
 5. [MVCコントローラー・ビュー実装](docs/5_BuildDotNetMVC/README_JA.md)
 6. [単体テストを追加しよう](docs/6_UnitTestingBackend/README_JA.md)

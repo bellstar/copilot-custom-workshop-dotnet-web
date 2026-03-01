@@ -1,6 +1,6 @@
 # プロジェクト作成とSQLite導入
 
-[前へ - はじめる前に](../2_BeforeGettingStarted/README_JA.md) | [次へ - DBレイヤー（DTO/DbContext/初期データ）実装](../4_ImplementDBLayer/README_JA.md)
+[前へ - はじめる前に](../2_BeforeGettingStarted/README_JA.md) | [次へ - Custom Instructions で Copilot の出力を制御しよう](../3_5_CustomInstructions/README_JA.md)
 
 このステップでは、ASP.NET Core MVC（.NET 10）プロジェクトの作成と、SQLiteパッケージの導入、初回ビルド・起動確認までを行います。
 
@@ -122,6 +122,6 @@ Copilotがコマンドや実行方法を教えてくれます。
 
 ---
 
-次のステップでは、DTO/DbContext/初期データ投入などDBレイヤーの実装に進みます。
+次のステップでは、Custom Instructions を設定して Copilot の出力をカスタマイズします。
 
-[前へ - はじめる前に](../2_BeforeGettingStarted/README_JA.md) | [次へ - DBレイヤー（DTO/DbContext/初期データ）実装](../4_ImplementDBLayer/README_JA.md)
+[前へ - はじめる前に](../2_BeforeGettingStarted/README_JA.md) | [次へ - Custom Instructions で Copilot の出力を制御しよう](../3_5_CustomInstructions/README_JA.md)
