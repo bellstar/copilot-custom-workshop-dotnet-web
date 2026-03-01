@@ -13,7 +13,8 @@
 ## 問題: パッケージの不整合やビルドエラー
 
 - `dotnet restore` で依存関係を再取得してください。
-- プロジェクトのターゲットフレームワークが .NET 8 になっているか確認してください。
+- プロジェクトのターゲットフレームワーク（`.csproj` 内の `<TargetFramework>`）が正しいか確認してください（.NET 10 の場合は `net10.0`、.NET 8 の場合は `net8.0`）。
+- EF Core 関連パッケージ（`Microsoft.EntityFrameworkCore.Sqlite`、`Design`、`Tools`、`InMemory`）と `dotnet-ef` ツールのバージョンが、ターゲットフレームワークと一致しているか確認してください。.NET 10 なら 10.x、.NET 8 なら 8.x で統一する必要があります。
 
 ## 問題: データが表示されない/保存されない
 

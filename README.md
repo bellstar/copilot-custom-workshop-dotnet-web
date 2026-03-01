@@ -4,7 +4,9 @@ This project is based on [https://github.com/ps-copilot-sandbox/copilot-custom-w
 
 **GitHub エキスパートサービスチーム**がご用意したカスタム Copilot ワークショップへようこそ！ 
 
-このワークショップでは、フロントエンドに ASP.NET Core MVC、バックエンドに ASP.NET Core、データベースに SQLite（ファイルDB）を利用したフルスタック Web アプリケーションの構築方法を学びます。
+このワークショップでは、フロントエンドに ASP.NET Core MVC（.NET 10）、バックエンドに ASP.NET Core、データベースに SQLite（ファイルDB）を利用したフルスタック Web アプリケーションの構築方法を学びます。
+
+> **Note:** このワークショップは Visual Studio 2026 + .NET 10（LTS）をメイン環境としています。VS Code（C# Dev Kit）でも実施可能です。また、Visual Studio 2022 をご利用の場合は .NET 8（LTS）での実施も可能です。詳細は[はじめにお読みください](docs/2_BeforeGettingStarted/README_JA.md)をご覧ください。
 
 複数のテクノロジースタックを扱うため、[はじめにお読みください](docs/2_BeforeGettingStarted/README_JA.md) に記載された前提条件を満たしていることをご確認ください。満たしていない場合でも、GitHub エキスパートサービスチームのインストラクターによるデモを見て学ぶことも可能です。
 

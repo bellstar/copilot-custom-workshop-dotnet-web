@@ -10,7 +10,7 @@
 まずは以下のようにCopilot Chatに質問して、単体テスト実装の全体手順をまとめて提案してもらいましょう。
 
 ```
-ASP.NET Core MVC（.NET 8）＋SQLiteアプリで、xUnitを使ってDTOやDbContext、コントローラーの単体テストを実装したいです。
+ASP.NET Core MVC（.NET 10）＋SQLiteアプリで、xUnitを使ってDTOやDbContext、コントローラーの単体テストを実装したいです。
 - テストプロジェクトの作成
 - DbContextのテスト
 - コントローラーのテスト
@@ -38,6 +38,8 @@ dotnet new xunit -n MeowWorld.Tests
 dotnet add MeowWorld.Tests reference MeowWorld
 dotnet add MeowWorld.Tests package Microsoft.EntityFrameworkCore.InMemory
 ```
+
+> **Note (.NET 8):** `Microsoft.EntityFrameworkCore.InMemory` のバージョンは、メインプロジェクトの EF Core パッケージバージョンと合わせてください。.NET 8 の場合は `dotnet add MeowWorld.Tests package Microsoft.EntityFrameworkCore.InMemory --version 8.0.*` のようにバージョンを指定します。
 
 ---
 

@@ -2,7 +2,7 @@
 
 [前へ - はじめる前に](../2_BeforeGettingStarted/README_JA.md) | [次へ - DBレイヤー（DTO/DbContext/初期データ）実装](../4_ImplementDBLayer/README_JA.md)
 
-このステップでは、ASP.NET Core MVC（.NET 8）プロジェクトの作成と、SQLiteパッケージの導入、初回ビルド・起動確認までを行います。
+このステップでは、ASP.NET Core MVC（.NET 10）プロジェクトの作成と、SQLiteパッケージの導入、初回ビルド・起動確認までを行います。
 
 ---
 
@@ -23,7 +23,8 @@ GitHub Copilot の **Agent モード**を使うと、プロジェクトの作成
 
 ### 前提
 
-- **Visual Studio 2022**（バージョン 17.14.5 以降）がインストールされていること
+- .NET 10 SDK がインストールされていること
+- **Visual Studio 2026**、または VS Code（C# Dev Kit）がインストールされていること
 - GitHub Copilot ライセンスが有効で、Copilot Chat が使用可能であること
 - Copilot Chat のモード切り替えで「Agent」が選択可能であること
 
@@ -33,19 +34,21 @@ GitHub Copilot の **Agent モード**を使うと、プロジェクトの作成
 
    > **Note:** まだ Visual Studio のプロジェクトやソリューションは作成しません。空のフォルダーを用意するだけで OK です。Agent がこの中にプロジェクトを自動生成します。
 
-2. Visual Studio 2022 を起動し、**「フォルダーを開く」** から手順 1 で作成したフォルダーを開きます
+2. Visual Studio 2026 を起動し、**「フォルダーを開く」** から手順 1 で作成したフォルダーを開きます
 
 3. **表示 > GitHub Copilot Chat** で Copilot Chat ウィンドウを開き、入力欄のモード切り替えドロップダウンから **「Agent」** を選択します
 
 4. 以下のプロンプトを入力して送信します：
 
 ```
-.NET 8 の ASP.NET Core MVC プロジェクト "MeowWorld" を新規作成してください。
+.NET 10 の ASP.NET Core MVC プロジェクト "MeowWorld" を新規作成してください。
 作成先は ./app ディレクトリです。
 SQLite 関連の NuGet パッケージ（Microsoft.EntityFrameworkCore.Sqlite、
 Microsoft.EntityFrameworkCore.Design、Microsoft.EntityFrameworkCore.Tools）を追加し、
 ビルドが通ることを確認してください。
 ```
+
+> **Note (.NET 8):** .NET 8 では、EF Core パッケージのバージョンを 8.x に合わせる必要があります。例：`Microsoft.EntityFrameworkCore.Sqlite` はバージョン `8.0.x` を指定してください。また、プロジェクトの TFM は `net10.0` ではなく `net8.0` になります。
 
 5. Agent がターミナルコマンドの実行許可を求めてきたら、内容を確認して **「Continue」** を押します
 
@@ -55,7 +58,7 @@ Microsoft.EntityFrameworkCore.Design、Microsoft.EntityFrameworkCore.Tools）を
 
 ### 確認
 
-Agent によるビルドが成功したら、Visual Studio の **デバッグ > デバッグなしで開始**、またはターミナルで以下のコマンドを実行してアプリケーションが起動することを確認します：
+Agent によるビルドが成功したら、**デバッグ > デバッグなしで開始**、またはターミナルで以下のコマンドを実行してアプリケーションが起動することを確認します：
 
 ```bash
 cd app/MeowWorld
@@ -71,7 +74,7 @@ dotnet run
 まずはGitHub Copilot Chatに、以下のように質問してみましょう。
 
 ```
-Visual Studioを使って.NET 8でASP.NET Core MVCプロジェクトを新規作成するには？プロジェクトの名前は"MeowWorld"です。
+.NET 10でASP.NET Core MVCプロジェクトを新規作成するには？プロジェクトの名前は"MeowWorld"です。
 ```
 
 Copilotが手順を教えてくれます。
@@ -87,7 +90,7 @@ Copilotが手順を教えてくれます。
 次に、Copilot Chatに以下のように質問してみましょう。
 ソリューション全体についての質問のため、ソリューション全体をコンテキストに含めます。以降のプロンプトもソリューション全体を参照する必要がある場合は、コンテキストにソリューションを含めます。
 
-> **Note:** ソリューション全体を含めるドロップダウンは、Visual Studio 2022のバージョン17.14.5以降が必要です。
+> **Note:** Visual Studio 2026 でソリューション全体を含めるドロップダウンは、Copilot Chat のコンテキスト追加からソリューションを選択します。VS Code の場合は `#codebase` やワークスペース全体をコンテキストに含めてください。
 
 ![Copilot Add Context](./images/1_CopilotAddContents.jpg)
 

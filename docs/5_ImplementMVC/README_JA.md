@@ -10,7 +10,7 @@
 まずは以下のようにCopilot Chatに質問して、MVCコントローラー・ビュー実装の全体手順をまとめて提案してもらいましょう。
 
 ```
-ASP.NET Core MVC（.NET 8）で、SQLite＋Entity Framework CoreのDBレイヤーを使って猫情報の一覧表示・追加・編集・削除ができるMVCコントローラーとビューを実装したいです。
+ASP.NET Core MVC（.NET 10）で、SQLite＋Entity Framework CoreのDBレイヤーを使って猫情報の一覧表示・追加・編集・削除ができるMVCコントローラーとビューを実装したいです。
 - CatsControllerの作成
 - 一覧表示用ビューの作成
 - 必要に応じてCreate/Edit/Details/Deleteアクションも
