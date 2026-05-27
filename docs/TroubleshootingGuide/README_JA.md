@@ -1,26 +1,58 @@
-# トラブルシューティングガイド（SQLite/EF Core）
+# トラブルシューティングガイド
 
-## 問題: SQLiteファイルがロックされている/アクセスできない
+## Copilot 関連
 
-- アプリケーションが複数起動していないか確認してください。
-- DBファイル（例: cats.db）を削除して再作成する場合は、アプリを完全に停止してから行ってください。
+### Agent モードが選択できない
+- Copilot Chat のバージョンが最新か確認してください
+- VS Code の場合：拡張機能「GitHub Copilot Chat」を最新にアップデート
+- VS 2026 の場合：ツール > 拡張機能の管理 で更新を確認
 
-## 問題: マイグレーションや初期データ投入でエラーが出る
+### Custom Instructions が反映されない
+- **VS Code:** 設定で `github.copilot.chat.codeGeneration.useInstructionFiles` が `true` になっているか確認
+- `.github/copilot-instructions.md` のパスが正しいか確認（リポジトリルート直下の `.github/` フォルダー内）
+- **新しいチャットセッション**を開いてから試す（既存セッションでは反映されない場合がある）
 
-- `dotnet ef migrations add InitialCreate` などのコマンドが失敗する場合、パッケージのバージョンやDbContextの設定を見直してください。
-- `Microsoft.EntityFrameworkCore.Sqlite` パッケージが正しくインストールされているか確認してください。
+### `.instructions.md` の `applyTo` が効かない
+- グロブパターンが正しいか確認（例：`**/*.cshtml`、`**/Tests/**`）
+- ファイルがワークスペース内にあるか確認
+- 該当パターンのファイルを**編集対象として操作している**か確認（閲覧だけでは適用されない）
 
-## 問題: パッケージの不整合やビルドエラー
+### Custom Agent（`@agent名`）が表示されない
+- `.github/agents/` ディレクトリに `.agent.md` ファイルが存在するか確認
+- YAML フロントマター（`---` で囲まれた部分）の構文エラーがないか確認
+- Copilot Chat を再起動してみてください
 
-- `dotnet restore` で依存関係を再取得してください。
-- プロジェクトのターゲットフレームワーク（`.csproj` 内の `<TargetFramework>`）が正しいか確認してください（.NET 10 の場合は `net10.0`、.NET 8 の場合は `net8.0`）。
-- EF Core 関連パッケージ（`Microsoft.EntityFrameworkCore.Sqlite`、`Design`、`Tools`、`InMemory`）と `dotnet-ef` ツールのバージョンが、ターゲットフレームワークと一致しているか確認してください。.NET 10 なら 10.x、.NET 8 なら 8.x で統一する必要があります。
-
-## 問題: データが表示されない/保存されない
-
-- DBファイルのパスが正しいか、`appsettings.json` の接続文字列を確認してください。
-- 初期データ投入処理が正しく動作しているか、`Program.cs` の該当部分を見直してください。
+### `/tests` や `/fix` が動作しない
+- 対象ファイルがエディタで開かれているか確認
+- Copilot Chat 拡張機能が最新か確認
 
 ---
 
-困ったときはCopilot Chatでエラーメッセージや状況を伝えて相談しましょう。
+## 開発環境関連
+
+### SQLite ファイルがロックされている / アクセスできない
+- アプリケーションが複数起動していないか確認
+- DB ファイル（`meowworld.db`）を削除して再作成する場合は、アプリを完全に停止してから行ってください
+
+### マイグレーションでエラーが出る
+- `dotnet-ef` ツールがインストールされているか確認：`dotnet tool list --global`
+- 未インストールの場合：`dotnet tool install --global dotnet-ef`
+- パッケージバージョンとターゲットフレームワークが一致しているか確認（.NET 10 → EF Core 10.x、.NET 8 → EF Core 8.x）
+
+### ビルドエラー
+- `dotnet restore` で依存関係を再取得
+- `.csproj` の `<TargetFramework>` を確認（`net10.0` or `net8.0`）
+- EF Core 関連パッケージのバージョンが統一されているか確認
+
+### データが表示されない / 保存されない
+- `appsettings.json` の接続文字列を確認：`"Data Source=meowworld.db"`
+- `Program.cs` に自動マイグレーション適用コードがあるか確認
+- `meowworld.db` ファイルが生成されているか確認
+
+---
+
+## 一般的なアドバイス
+
+- **困ったらまず Copilot に聞く:**  Agent モードでエラーメッセージを貼り付けるか、`#terminalLastCommand` を参照させてください
+- **チャットをリセットする:** 状態がおかしくなった場合は新しいチャットセッションを開始
+- **ビルドし直す:** `dotnet clean` → `dotnet build` で状態をクリーンにする
