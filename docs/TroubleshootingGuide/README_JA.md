@@ -9,11 +9,11 @@
 
 ### Custom Instructions が反映されない
 - **VS Code:** 設定で `github.copilot.chat.codeGeneration.useInstructionFiles` が `true` になっているか確認
-- `.github/copilot-instructions.md` のパスが正しいか確認（リポジトリルート直下の `.github/` フォルダー内）
+- `.github/copilot-instructions.md` のパスが正しいか確認（ワークスペースルート直下の `.github/` フォルダー内）
 - **新しいチャットセッション**を開いてから試す（既存セッションでは反映されない場合がある）
 
 ### `.instructions.md` の `applyTo` が効かない
-- グロブパターンが正しいか確認（例：`**/*.cshtml`、`**/Tests/**`）
+- グロブパターンが正しいか確認（例：`**/*.cshtml`、`**/*.Tests/**`）
 - ファイルがワークスペース内にあるか確認
 - 該当パターンのファイルを**編集対象として操作している**か確認（閲覧だけでは適用されない）
 
