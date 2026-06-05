@@ -51,7 +51,7 @@
   - [VS Code](https://code.visualstudio.com/)（[C# Dev Kit 拡張機能](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit)）+ [.NET 10 SDK](https://dotnet.microsoft.com/ja-jp/download/dotnet/10.0) でも実施可能
   - **VS2022 利用者向け:** [Visual Studio 2022](https://visualstudio.microsoft.com/ja/vs/) のバージョン 17.14.5 以降 + [.NET 8 SDK](https://dotnet.microsoft.com/ja-jp/download/dotnet/8.0)
 - dotnet-ef ツールがインストールされていること（[インストール手順](https://learn.microsoft.com/ja-jp/ef/core/cli/dotnet)）
-- Windowsの場合は[Git CLI](https://git-scm.com/downloads)、Mac/Linuxの場合はターミナルでgitが使えること
+- Windowsの場合は[Git CLI](https://git-scm.com/install/windows)、Mac/Linuxの場合はターミナルでgitが使えること
 
 ## 期待される成果
 
