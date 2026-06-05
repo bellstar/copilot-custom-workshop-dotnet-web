@@ -14,12 +14,14 @@
 | 4 | **Custom Instructions** | `.github/copilot-instructions.md` でプロジェクト共通ルールを自動適用 |
 | 4 | **ファイルスコープ指示** | `.instructions.md` + `applyTo` でファイル種類別ルールを適用 |
 | 4 | **再利用可能プロンプト** | `.prompt.md` でテンプレート化した指示を保存・共有 |
-| 5 | **コンテキスト管理** | `#file`・`#codebase`・`#terminalLastCommand` で必要情報を効率的に渡す |
-| 6 | **自動エラー修正** | Agent がビルドエラーを検知して自動修正 |
-| 6 | **/fix** | エディタ上のエラーをワンコマンドで修正 |
-| 7 | **Vision** | ワイヤーフレーム画像から UI を自動実装 |
+| 5 | **自動エラー修正** | Agent がビルドエラーを検知して自動修正 |
+| 5 | **/fix** | エディタ上のエラーをワンコマンドで修正 |
+| 6 | **Vision** | ワイヤーフレーム画像から UI を自動実装 |
+| 6 | **.prompt.md 活用** | 再利用プロンプトで一貫した CRUD コントローラーを生成 |
+| 7 | **コンテキスト管理** | `#file`・`#codebase`・`#terminalLastCommand` で必要情報を効率的に渡す |
 | 8 | **/tests** | テスト対象ファイルからユニットテストを自動生成 |
 | 9 | **Custom Agent** | `.agent.md` でプロジェクト専用 AI アシスタントを構築 |
+| 9 | **Skill** | `SKILL.md` でナレッジを外部化し Agent が自律参照 |
 
 ---
 
@@ -34,7 +36,9 @@
    ↓
 3. .prompt.md で頻出タスクをテンプレート化
    ↓
-4. .agent.md で専門エージェントを構築（チーム知識の形式知化）
+4. .agent.md で専門エージェントを構築（役割・手順・完了条件の標準化）
+   ↓
+5. SKILL.md で参照知識を外部化（ガイドライン・FAQ・設計パターンの共有）
 ```
 
 ### Tips
@@ -42,10 +46,11 @@
 | 場面 | おすすめ手法 |
 |------|------------|
 | 新規プロジェクト立ち上げ | Agent モードで一気にスキャフォールド |
+| 既存プロジェクトへの導入 | `/init` で初期ファイルを生成し、レビューしてから運用開始 |
 | コーディング規約の統一 | `copilot-instructions.md` + レビューで育てる |
 | デザインからの実装 | Vision で画像を入力 |
 | 繰り返しタスク | `.prompt.md` でテンプレート化 |
-| 新メンバーの立ち上がり | Custom Agent でチームの暗黙知を形式知化 |
+| 新メンバーの立ち上がり | Custom Agent + Skill で手順と知識を形式知化 |
 | エラー対応 | Agent に任せるか、`#terminalLastCommand` + `/fix` |
 | Token 節約 | `#file` でピンポイント指定 > `#codebase` |
 
@@ -78,16 +83,25 @@
 
 ワークショップ後に試してみてください：
 
-1. **自分のプロジェクトに `copilot-instructions.md` を作成する**
+1. **既存プロジェクトでは `/init` で初期セットアップする**
+   - まず `/init` で Copilot の初期ファイル群を生成する
+   - 生成結果はそのまま使わず、チーム規約に合わせてレビューする
+   - 整理の目安:
+     - 共通ルールは `copilot-instructions.md`
+     - ファイル種類別ルールは `.instructions.md`
+     - 役割・手順・完了条件は `.agent.md`
+     - 参照知識（ガイドライン・FAQ）は `SKILL.md`
+
+2. **自分のプロジェクトに `copilot-instructions.md` を作成する**
    - 今日のテンプレートを参考に、自分のプロジェクトに合わせてカスタマイズ
 
-2. **チームで `.prompt.md` を共有する**
+3. **チームで `.prompt.md` を共有する**
    - 頻出タスクのプロンプトをリポジトリにコミット
 
-3. **Custom Agent を育てる**
-   - 開発ガイドラインや FAQ を `.agent.md` に組み込む
+4. **Custom Agent を育てる**
+   - 役割・作業手順・完了条件は `.agent.md` に置き、開発ガイドラインや FAQ は Skill として切り出す
 
-4. **Copilot の新機能をキャッチアップする**
+5. **Copilot の新機能をキャッチアップする**
    - [GitHub Copilot Changelog](https://github.blog/changelog/label/copilot/)
    - [VS Code Release Notes](https://code.visualstudio.com/updates)
 
