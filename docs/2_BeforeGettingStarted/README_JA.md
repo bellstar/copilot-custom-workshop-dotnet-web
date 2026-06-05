@@ -47,8 +47,8 @@
 - Copilotライセンスへのアクセス（[GitHub Copilot プラン](https://github.com/features/copilot/plans)）
 - Copilot for Businessライセンス付きのCopilot Chatへのアクセス（[GitHub Copilot Business](https://github.com/features/copilot/copilot-business)）
 - 以下のいずれかの開発環境：
-  - **推奨:** [Visual Studio](https://visualstudio.microsoft.com/ja/vs/) + [.NET SDK](https://dotnet.microsoft.com/ja-jp/download)
-  - [VS Code](https://code.visualstudio.com/)（[C# Dev Kit 拡張機能](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit)）+ [.NET SDK](https://dotnet.microsoft.com/ja-jp/download) でも実施可能
+  - **推奨:** [Visual Studio 2026](https://visualstudio.microsoft.com/ja/vs/) + [.NET 10 SDK](https://dotnet.microsoft.com/ja-jp/download/dotnet/10.0)
+  - [VS Code](https://code.visualstudio.com/)（[C# Dev Kit 拡張機能](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit)）+ [.NET 10 SDK](https://dotnet.microsoft.com/ja-jp/download/dotnet/10.0) でも実施可能
   - **VS2022 利用者向け:** [Visual Studio 2022](https://visualstudio.microsoft.com/ja/vs/) のバージョン 17.14.5 以降 + [.NET 8 SDK](https://dotnet.microsoft.com/ja-jp/download/dotnet/8.0)
 - dotnet-ef ツールがインストールされていること（[インストール手順](https://learn.microsoft.com/ja-jp/ef/core/cli/dotnet)）
 - Windowsの場合は[Git CLI](https://git-scm.com/downloads)、Mac/Linuxの場合はターミナルでgitが使えること
