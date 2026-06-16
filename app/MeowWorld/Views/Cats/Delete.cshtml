@@ -1,0 +1,41 @@
+@model MeowWorld.Models.Cat
+
+@{
+    ViewData["Title"] = "猫削除";
+}
+
+<div class="container py-3">
+    <div class="row justify-content-center">
+        <div class="col-12 col-lg-8">
+            <h1 class="h3 mb-3">猫削除</h1>
+
+            <div class="alert alert-warning" role="alert">
+                この猫情報を削除します。よろしいですか？
+            </div>
+
+            <div class="card shadow-sm mb-3">
+                <div class="card-body">
+                    <dl class="row mb-0">
+                        <dt class="col-sm-4">名前</dt>
+                        <dd class="col-sm-8">@Model.Name</dd>
+
+                        <dt class="col-sm-4">年齢</dt>
+                        <dd class="col-sm-8">@Model.Age</dd>
+
+                        <dt class="col-sm-4">品種</dt>
+                        <dd class="col-sm-8">@Model.Breed</dd>
+
+                        <dt class="col-sm-4">説明</dt>
+                        <dd class="col-sm-8">@(string.IsNullOrWhiteSpace(Model.Description) ? "-" : Model.Description)</dd>
+                    </dl>
+                </div>
+            </div>
+
+            <form asp-action="Delete" method="post" class="d-flex gap-2">
+                <input type="hidden" asp-for="Id" />
+                <button type="submit" class="btn btn-danger">削除する</button>
+                <a asp-action="Index" class="btn btn-outline-secondary">キャンセル</a>
+            </form>
+        </div>
+    </div>
+</div>

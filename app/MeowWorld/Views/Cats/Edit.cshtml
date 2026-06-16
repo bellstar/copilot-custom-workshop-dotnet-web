@@ -1,0 +1,57 @@
+@model MeowWorld.Models.Cat
+
+@{
+    ViewData["Title"] = "猫編集";
+}
+
+<div class="container py-3">
+    <div class="row justify-content-center">
+        <div class="col-12 col-lg-8">
+            <h1 class="h3 mb-3">猫編集</h1>
+
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <form asp-action="Edit" method="post">
+                        <input type="hidden" asp-for="Id" />
+                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                        <div class="row g-3">
+                            <div class="col-12 col-md-6">
+                                <label asp-for="Name" class="form-label">名前</label>
+                                <input asp-for="Name" class="form-control" />
+                                <span asp-validation-for="Name" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-12 col-md-6">
+                                <label asp-for="Age" class="form-label">年齢</label>
+                                <input asp-for="Age" class="form-control" />
+                                <span asp-validation-for="Age" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-12">
+                                <label asp-for="Breed" class="form-label">品種</label>
+                                <input asp-for="Breed" class="form-control" />
+                                <span asp-validation-for="Breed" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-12">
+                                <label asp-for="Description" class="form-label">説明</label>
+                                <textarea asp-for="Description" class="form-control" rows="4"></textarea>
+                                <span asp-validation-for="Description" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="mt-4 d-flex gap-2">
+                            <button type="submit" class="btn btn-primary">保存</button>
+                            <a asp-action="Index" class="btn btn-outline-secondary">一覧に戻る</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,38 +8,111 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/MeowWorld.styles.css" asp-append-version="true" />
+    <style>
+        body {
+            background-color: #f5f5f5;
+        }
+
+        .mw-header-logo {
+            max-width: 440px;
+            width: min(90vw, 440px);
+            height: auto;
+        }
+
+        .mw-shell {
+            border: 1px solid #d6d6d6;
+            background-color: #ffffff;
+            min-height: calc(100vh - 220px);
+        }
+
+        .mw-sidebar {
+            background-color: #fbfbfb;
+            border-right: 1px solid #d6d6d6;
+        }
+
+        .mw-sidebar .nav-link {
+            color: #333333;
+            border-radius: 0;
+            padding-top: 0.85rem;
+            padding-bottom: 0.85rem;
+            border-bottom: 1px solid #eeeeee;
+        }
+
+        .mw-sidebar .nav-link.active {
+            background: repeating-linear-gradient(
+                -45deg,
+                #f7f7f7,
+                #f7f7f7 6px,
+                #f2f2f2 6px,
+                #f2f2f2 12px
+            );
+            font-weight: 600;
+            color: #222222;
+        }
+
+        .mw-main {
+            background-color: #ffffff;
+        }
+
+        .mw-main-content {
+            padding: 1.25rem;
+        }
+
+        @@media (max-width: 991.98px) {
+            .mw-shell {
+                min-height: auto;
+            }
+
+            .mw-sidebar {
+                border-right: 0;
+                border-bottom: 1px solid #d6d6d6;
+            }
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">MeowWorld</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+    @{
+        var controller = ViewContext.RouteData.Values["controller"]?.ToString();
+        var action = ViewContext.RouteData.Values["action"]?.ToString();
+        var isCatsIndex = string.Equals(controller, "Cats", StringComparison.OrdinalIgnoreCase)
+            && string.Equals(action, "Index", StringComparison.OrdinalIgnoreCase);
+    }
+
+    <header class="py-3">
+        <div class="container-fluid text-center">
+            <a asp-area="" asp-controller="Home" asp-action="Index" class="d-inline-block">
+                <img src="~/images/logo.png" alt="MeowWorld 猫管理システム" class="mw-header-logo" asp-append-version="true" />
+            </a>
+        </div>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+
+    <div class="container-fluid pb-3">
+        <div class="mw-shell row g-0">
+            <aside class="mw-sidebar col-12 col-lg-2">
+                <nav class="nav flex-column">
+                    <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">🏠 ダッシュボード</a>
+                    <a class="nav-link @(isCatsIndex ? "active" : string.Empty)" asp-area="" asp-controller="Cats" asp-action="Index">🐱 猫一覧</a>
+                    <a class="nav-link" asp-area="" asp-controller="Cats" asp-action="Create">＋ 新しい猫を登録</a>
+                    <a class="nav-link" href="#" aria-disabled="true">🏷 カテゴリ</a>
+                    <a class="nav-link" href="#" aria-disabled="true">♡ 健康記録</a>
+                    <a class="nav-link" href="#" aria-disabled="true">🐾 里親募集</a>
+                    <a class="nav-link" href="#" aria-disabled="true">🗓 スケジュール</a>
+                    <a class="nav-link" href="#" aria-disabled="true">📊 レポート</a>
+                    <a class="nav-link" href="#" aria-disabled="true">👤 ユーザー管理</a>
+                    <a class="nav-link" href="#" aria-disabled="true">⚙ 設定</a>
+                </nav>
+            </aside>
+            <main role="main" class="mw-main col-12 col-lg-10">
+                <div class="mw-main-content">
+                    @RenderBody()
+                </div>
+            </main>
+        </div>
     </div>
 
     <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2026 - MeowWorld - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        <div class="container-fluid px-3">
+            &copy; 2026 - MeowWorld - <a asp-area="" asp-controller="Home" asp-action="Privacy">プライバシー</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
